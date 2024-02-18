@@ -1,5 +1,5 @@
 {% load static %}
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,6 +20,31 @@
 
 </head>
 <body>
+<!-- search -->
+        <div class="row m-5">
+            <div class="col-md-12">
+                <form class="card card-sm">
+                    <div class="card-body row no-gutters align-items-center">
+                        <div class="col">
+                            <input type="search" name='item_name' placeholder="Search for products" class="form-control form-control-borderless">
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-success" type="submit" >Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+<!-- main -->
 <div class="container">
      <div class="row m-5">
             {% for product in product_objects %}
@@ -40,6 +65,29 @@
         </div>
 </div>
 
+<!--paginator-->
+        <div class="row">
+            <div class="col-md-3 offset-md-4">
+                <ul class="pagination">
+                    {% if product_objects.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ product_objects.previous_page_number  }}">Previous</a>
+                        </li>
+                    {% endif %}
+
+
+                    <li class="page-item active">
+                        <a class="page-link" href="?page={{ product_objects.number  }}">Current</a>
+                    </li>
+
+                    {% if product_objects.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ product_objects.next_page_number  }}">Next</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+
 </body>
 
-</html>
